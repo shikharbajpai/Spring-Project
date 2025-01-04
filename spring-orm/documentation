@@ -1,0 +1,2 @@
+1. For configuring xml file:
+1.1. Student Dao -> Hibernate Template -> Session Factory (interface) -> LocalSessionFactoryBeam -> 1. DriverManagerDataSource 2. hibernateProperties 2. annotationClasses

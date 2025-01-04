@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > StudentManagement</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: StudentManagement (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StudentManagement</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/68)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="nc">&nbsp;public class StudentManagement {</b>
+<b class="nc">&nbsp;    public final List&lt;StudentDetails&gt; studentRecord = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;    RecordBook recordBook = new RecordBook();</b>
+&nbsp;
+&nbsp;    public void addStudent(StudentDetails student) {
+<b class="nc">&nbsp;        if (student.getId() &lt;= 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid student id. Student id must be a positive integer.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        if (student.getStudentName().isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student name cannot be empty.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        if (student.getStudentClass() &lt;= 0 || student.getStudentClass() &gt; 12) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid student class. Student class must be a from 1 to 12.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (!isStudentIdPresent(student.getId())) {</b>
+<b class="nc">&nbsp;            studentRecord.add(student);</b>
+<b class="nc">&nbsp;            recordBook.addDataToFile(student);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student record added successfully!!!&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            System.out.println(&quot;Student Id already exists in records!!!&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void viewStudents() {
+<b class="nc">&nbsp;        if (studentRecord.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;No records present!!!&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            for (StudentDetails std : studentRecord) {</b>
+<b class="nc">&nbsp;                System.out.println(std);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void updateStudent(int id, String studentName, int studentClass) {
+<b class="nc">&nbsp;        if (id &lt;= 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid student ID. Student ID must be a positive integer.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        if (studentName.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student name cannot be empty.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        if (studentClass &lt;= 0 || studentClass &gt; 12) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid student class. Student class must be a from 1 to 12.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        if (isStudentIdPresent(id)) {</b>
+<b class="nc">&nbsp;            StudentDetails singleStudentRecord = findStudentRecordById(id);</b>
+<b class="nc">&nbsp;            recordBook.emptyDataFromFile();</b>
+<b class="nc">&nbsp;            singleStudentRecord.setStudentName(studentName);</b>
+<b class="nc">&nbsp;            singleStudentRecord.setStudentClass(studentClass);</b>
+<b class="nc">&nbsp;            for (StudentDetails std : studentRecord) {</b>
+<b class="nc">&nbsp;                recordBook.addDataToFile(std);</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student record updated successfully&quot;);</b>
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;No Record found!!!&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void deleteStudent(int id) {
+<b class="nc">&nbsp;        if (isStudentIdPresent(id)) {</b>
+<b class="nc">&nbsp;            StudentDetails stdRecord = findStudentRecordById(id);</b>
+<b class="nc">&nbsp;            studentRecord.remove(stdRecord);</b>
+<b class="nc">&nbsp;            recordBook.emptyDataFromFile();</b>
+<b class="nc">&nbsp;            for (StudentDetails std : studentRecord) {</b>
+<b class="nc">&nbsp;                recordBook.addDataToFile(std);</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student Record deleted Successfully!!!&quot;);</b>
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;No Record found!!!&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void deleteAllRecords() {
+<b class="nc">&nbsp;        if (studentRecord.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;No records are created!!!&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            studentRecord.clear();</b>
+<b class="nc">&nbsp;            System.out.println(&quot;All thr records are removed!!!&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isStudentIdPresent(int id) {
+<b class="nc">&nbsp;        for (StudentDetails std : studentRecord) {</b>
+<b class="nc">&nbsp;            if (std.getId() == id) {</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public StudentDetails findStudentRecordById(int id) {
+<b class="nc">&nbsp;        for (StudentDetails std : studentRecord) {</b>
+<b class="nc">&nbsp;            if (std.getId() == id) {</b>
+<b class="nc">&nbsp;                return std;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void searchStudentByName(String studentName) {
+<b class="nc">&nbsp;        if (studentName.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student name cannot be empty.&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (studentRecord.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;No records present by student name: &quot; + studentName);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            for (StudentDetails std : studentRecord) {</b>
+<b class="nc">&nbsp;                if (std.getStudentName().equalsIgnoreCase(studentName)) {</b>
+<b class="nc">&nbsp;                    System.out.println(std);</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-19 19:35</div>
+</div>
+</body>
+</html>

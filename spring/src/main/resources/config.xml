@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/util
+                http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <context:annotation-config/>
+
+    <!--Standalone Collections-->
+
+    <util:list list-class="java.util.LinkedList" id="myBestFriends">
+        <value>George</value>
+        <value>Steve</value>
+        <value>Tim</value>
+    </util:list>
+
+    <util:map map-class="java.util.HashMap" id="fees">
+        <entry key="Java" value="8000"/>
+        <entry key="Spring" value="5000"/>
+        <entry key="Hibernate" value="2000"/>
+    </util:map>
+
+    <util:properties id="dbConfig">
+        <prop key="driver">com.mysql.jdbc.driver</prop>
+        <prop key="username">root</prop>
+        <prop key="password">root</prop>
+    </util:properties>
+
+    <!--    Primitive Type Injection-->
+    <bean class="org.example.Student" name="Student">
+        <property name="student_id">
+            <value>123</value>
+        </property>
+
+        <property name="student_name">
+            <value>John</value>
+        </property>
+
+        <property name="student_address">
+            <value>Delhi</value>
+        </property>
+    </bean>
+
+    <!--Stereotype annotations-->
+    <context:component-scan base-package="org.stereotypeAnnotations"/>
+    <!--    SpEL operations using Stereotype annotations-->
+    <context:component-scan base-package="org.spEL"/>
+
+
+    <!--    Collections Type Injection-->
+    <bean class="org.example.Employee" name="Employee">
+        <property name="employee_id" value="101"/>
+        <property name="employee_name" value="Steve"/>
+        <property name="phones">
+            <list>
+                <value>65436</value>
+                <value>3434</value>
+                <value>3434</value>
+            </list>
+        </property>
+        <property name="addresses">
+            <set>
+                <value>Delhi</value>
+                <value>Lucknow</value>
+                <value>Pune</value>
+            </set>
+        </property>
+        <property name="courses">
+            <map>
+                <entry key="java" value="2 months"/>
+                <entry key="spring" value="1.5 months"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="username">Root</prop>
+                <prop key="password">root</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--Reference Type Injection-->
+    <bean class="org.referenceInjection.Marks" name="Marks">
+        <property name="marks_id" value="12"/>
+        <property name="subject_name" value="Maths"/>
+    </bean>
+
+    <bean class="org.referenceInjection.Students" name="Students">
+        <property name="student_id" value="34"/>
+        <property name="marks" ref="Marks">
+        </property>
+    </bean>
+
+    <!--Constructor Injection-->
+    <bean class="org.constructorInjection.Address" name="Address">
+        <property name="address_id" value="45"/>
+        <property name="address" value="Lucknow"/>
+    </bean>
+
+    <bean class="org.constructorInjection.Person" name="Person">
+        <constructor-arg value="12" type="int"/>
+        <constructor-arg value="David"/>
+        <constructor-arg ref="Address"/>
+        <constructor-arg>
+            <list>
+                <value>Java</value>
+                <value>Spring</value>
+                <value>Spring Boot</value>
+                <null/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean class="org.constructorInjection.Addition" name="Addition">
+        <constructor-arg value="12" type="int" index="1"/>
+        <constructor-arg value="23" type="int" index="0"/>
+    </bean>
+
+    <!--Spring Lifecycle-->
+    <bean class="org.springLifecycle.Vehicle" name="Vehicle" init-method="init" destroy-method="destroy">
+        <property name="vehicle_id" value="23"/>
+        <property name="vehicle_type" value="two-wheeler"/>
+    </bean>
+
+    <bean class="org.springLifecycle.Sports" name="Sports">
+        <property name="sports_id" value="12"/>
+        <property name="sport_name" value="Cricket"/>
+    </bean>
+
+    <bean class="org.springLifecycle.Electronics" name="Electronics">
+        <property name="name" value="Laptop"/>
+    </bean>
+
+    <!--Auto wiring using XML-->
+    <bean class="org.autowiring.usingXML.Identity" name="Identity">
+        <property name="name" value="Tim"/>
+        <property name="age" value="21"/>
+    </bean>
+
+    <bean class="org.autowiring.usingXML.Customer" name="Customer" autowire="byType"/>
+
+    <bean class="org.autowiring.annotation.Parent" name="Parent">
+        <property name="name" value="Smith"/>
+    </bean>
+
+    <bean class="org.autowiring.annotation.Parent" name="AnotherParent">
+        <property name="name" value="Mrs. Smith"/>
+    </bean>
+
+    <bean class="org.autowiring.annotation.Child" name="Child"/>
+
+    <!--Standalone Collections-->
+    <bean class="org.standalonecollections.Test" name="Test">
+        <property name="friends" ref="myBestFriends"/>
+        <property name="feeStructure" ref="fees"/>
+        <property name="properties" ref="dbConfig"/>
+    </bean>
+</beans>

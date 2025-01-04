@@ -1,0 +1,2 @@
+1. Install four dependencies namely: spring-core, spring-context, spring-jdbc and mysql-connector-j.
+2. On configuration.xml file inject the dependency of JdbcTemplate and DriverManagerDataSource.

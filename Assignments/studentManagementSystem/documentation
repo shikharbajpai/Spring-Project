@@ -1,0 +1,55 @@
+1. App: This class contains the main method and manages the user interface for the student management system.
+2. RecordBook: This class handles file operations for storing student records in a text file.
+3. StudentDetails: This class represents the details of a student, including id, name, and class.
+4. StudentManagement: This class manages operations related to students, such as adding, viewing, updating, and deleting student records.
+
+5. input buffer:
+An input buffer is a temporary storage area used to hold input data
+ that has been read from an input source but not yet processed by the program.
+ When you read input using methods like nextInt(), nextLine(), or read(),
+  the data is initially read into this buffer.
+
+6. Scanner: This class in Java is used for parsing and processing input from various sources.
+6.1. scanner.nextInt(): Reads an integer input from the user.
+6.2. scanner.nextLine(): This line is used to consume the newline character or whitespaces (\n)
+ left in the input buffer after reading an integer using nextInt().
+6.3. scanner.close() is used to close the Scanner object.
+6.4. scanner.hasNextLine() is used to check if there is another line of input available
+ to be read from the input source
+
+7. System: This class provides access to system-related resources and functionalities.
+7.1. System.in: This specifically refers to the standard input stream, which by default is the keyboard.
+7.2. System.out: This specifically refers to the standard output stream. It's typically connected to the console.
+7.3. System.exit(): Program immediately stops execution.
+
+When use System.in with Scanner, it allows to read input from the user through the keyboard.
+
+8. Stream: a sequence of data is known as a stream.
+8.1. Streams is used to perform I/O operations on a file.
+8.2. There are two types of streams :
+8.2.1 Input Streams: Used for reading data from a source, such as a file or keyboard input.
+8.2.2. Output Streams: Used for writing data to a destination, such as a file or console output.
+
+9. Collections: a collection represents a group of objects. Java collections provide classes
+and interfaces for us to be able to write code quickly and efficiently.
+Collections in Java are used for managing and organizing data in various data structures.
+
+10. List<E> : <E> –> the type of elements in this list.
+
+11. ArrayList is a part of the Java Collections Framework and is used to store
+a dynamic list of elements.
+ArrayLists can dynamically resize themselves as elements are added or removed.
+
+12. The File class in Java is used to work with files and directories.
+ It provides methods to create, delete, check existence,
+ and perform other operations on files and directories.
+
+13. FileWriter is a class that is used to write characters to a file.
+
+14. FileNotFoundException;
+    FileWriter;
+    IOException;
+
+15. Maven is a software project management and comprehension tool.
+ Based on the concept of a project object model (POM),
+ Maven can manage a project's build, reporting and documentation from a central piece of information

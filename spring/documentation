@@ -1,0 +1,56 @@
+Spring is a lightweight framework.
+ It can be thought of as a framework of frameworks
+  because it provides support to various frameworks such as Struts, Hibernate, Tapestry, EJB, JSF, etc.
+
+The Spring framework comprises several modules such as IOC, AOP, DAO, Context, ORM, WEB MVC etc.
+
+Spring IoC (Inversion of Control) Container is the core of Spring Framework.
+ It creates the objects, configures and assembles their dependencies, manages their entire life cycle.
+  The Container uses Dependency Injection(DI) to manage the components that make up the application.
+   It gets the information about the objects from a configuration file(XML) or Java Annotations.
+    These objects are called Beans.
+    Beans are Java objects that are configured at run-time by Spring IoC Container
+
+Spring IoC is a component of Spring Framework.
+ It creates the objects, holds them in memory and injecting one object into another object.
+  It manages object entire life cycle.
+    It requires beans(POJO class) and configuration file. (properties, which object is dependent on which object).
+     a POJO class contains variables and their Getters and Setters
+
+There are 2 types of IoC containers:
+BeanFactory
+ApplicationContext: ApplicationContext is a interface that extends the features of BeanFactory.
+
+The followings are some of the main features of Spring IoC,
+
+Creating Object for us,
+Managing our objects,
+Helping our application to be configurable,
+Managing dependencies.
+
+Since applicationContext is a interface we cant create a interface.
+Therefore we use its subclasses to create the object.
+such as ClasspathXMLApplicationContext, AnnotationConfigApplicationContext, FileSystemXMLApplicationContext.
+
+DI or Dependency Injection can bed one by two ways:
+Setter Injection
+Constructor Injection
+
+Configuration of spring project
+1. add dependency: spring-core and spring-context.
+2. adding a bean(POJO class in Java generally consists of variable values, getters, and setters)
+in org.example create a class named as Student.
+3. create a configuration.xml file
+4. for setter injection use property and value tag to setter of class Student.
+5. use of list, set, map, props tag for variable type List, Set, Map, Properties.
+6. use of ref tag for variable type different class. like private Marks marks.
+7. for constructor injection use constructor-arg tag.
+8. By default the type of value in bean or property tag is String.
+9. use type parameter to define the type of value. like type="int"
+10. Lifecycle methods:
+- 10.1. Bean(a java class that has variables, default constructor, setter and getter)
+ and its meta data that is configuration file is given spring container
+- 10.2. Spring container creates a object of Bean.
+- 10.3. Spring container will set the values of the properties
+
+

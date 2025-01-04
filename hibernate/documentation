@@ -1,0 +1,28 @@
+1. In pom.xml under dependencies tag include hibernate-core and mysql-connector-java dependency.
+2. Create a hibernate.cfg.xml file inside the resources folder created under src folder.
+Structure would be like src/resources/hibernate.cfg.xml
+3. Configure hibernate.cfg.xml file.
+4. property hbm2ddl.auto is to either create or update the table in the database.
+5. mapping class include the exact location of class to be used for mapping object and with database table.
+6. Commonly used hibernate Annotations:
+6.1. @Entity - use to mark the class as Entity. Means to create/update the class object table in database.
+6.2. @Table - use to change table details.
+6.3. @Id - use to mark column as primary key.
+6.4. @GeneratedValue - hibernate will automatically generate values using strategy like auto increment.
+6.5. @Column - used to specify column mapping like changing column name.
+6.6. @Transient - informs hibernate to not create that column.
+6.7. @Temporal - informs hibernate to the data in particular date format.
+6.8. @Lob - informs hibernate that this data is a large object.
+6.9. @Embeddable - use to define a class in another Entity class.
+6.10. @OneToOne - use to create a foreign key from one Entity class to map another Entity class.
+6.11. @JoinColumn - used to specify the column in the database table that is used for joining an entity.
+6.12. @OneToMany - used to define a one-to-many relationship between entities.
+6.13. @ManyToOne - used to define a many-to-one relationship between entities
+6.14. @ManyToMany - used to define a many-to-many relationship between entities
+6.15. @JoinTable - used in conjunction with @ManyToMany to specify the join table details for a many-to-many relationship
+7. To fetch Data from Database there are two ways:
+7.1. get() method
+7.2. load() method
+8. Fetch Types Technique is of two types:
+8.1. Eager - Design pattern in which data loading occurs on spot.
+8.2. Lazy - Data loads only when getter or setter method is called.
